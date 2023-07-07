@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	htmlTemplate "html/template"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
@@ -21,6 +23,8 @@ func main() {
 		}
 
 		t.Execute(writer, out)
+
+		fmt.Printf("REQUEST! %s, %s, %s\n", time.Now(), request.RemoteAddr, request.Method)
 	})
 
 	http.Handle("/metrics", promhttp.Handler())
