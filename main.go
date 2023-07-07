@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	_ "github.com/prometheus/client_golang/prometheus/promhttp"
 	htmlTemplate "html/template"
 	"log"
 	"net/http"
@@ -21,6 +23,9 @@ func main() {
 
 		t.Execute(writer, out)
 	})
+
+	http.Handle("/metrics", promhttp.Handler())
+	http.ListenAndServe(":9000", nil)
 
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
