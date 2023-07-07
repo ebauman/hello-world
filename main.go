@@ -24,7 +24,5 @@ func main() {
 	})
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":9000", nil)
-
-	log.Fatal(http.ListenAndServe(":80", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
