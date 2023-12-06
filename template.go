@@ -1,4 +1,6 @@
-<html>
+package main
+
+var Template = `<html>
 <head>
 <title>Hello, world!</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
@@ -17,3 +19,4 @@
 </main>
 </body>
 </html>
+`

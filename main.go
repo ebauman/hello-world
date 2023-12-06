@@ -12,7 +12,13 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-		var t = htmlTemplate.Must(htmlTemplate.ParseFiles("./html.tmpl"))
+		var t, err = htmlTemplate.New("template").Parse(Template)
+		if err != nil {
+			writer.WriteHeader(500)
+			writer.Write([]byte("error parsing template: " + err.Error()))
+			return
+		}
+
 		var strings = []string{}
 		strings = append(strings, os.Environ()...)
 
